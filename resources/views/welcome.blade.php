@@ -11,6 +11,8 @@
     <!-- Navbar -->
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <img src="{{ asset('img/logounpam.png') }}" alt="logo" width="50">
+
             <h1 class="text-xl font-bold text-blue-600">
                 📘 E-Learning Dasar
             </h1>

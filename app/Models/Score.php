@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Score extends Model
 {
@@ -11,4 +12,11 @@ class Score extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    // ✅ RELASI KE SUBJECT
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
 }

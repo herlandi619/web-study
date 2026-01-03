@@ -57,7 +57,7 @@
                 </a>
 
                 <!-- Nilai -->
-                <a href="#"
+                <a href="{{ route('score.index') }}"
                    class="block bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition hover:ring-2 hover:ring-purple-400">
 
                     <div class="text-purple-600 text-4xl mb-4">📊</div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MaterialController;
 
@@ -31,6 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/kuis', [QuizController::class, 'index'])->name('quiz.index');
     Route::get('/kuis/{subject}', [QuizController::class, 'start'])->name('quiz.start');
     Route::post('/kuis/{subject}/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+
+
+    //score
+    Route::get('/hasil-belajar', [ScoreController::class, 'index'])->name('score.index');
+
+
+
 });
 
 require __DIR__.'/auth.php';

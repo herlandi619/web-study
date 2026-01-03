@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
+use App\Models\Score;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,6 @@ class QuizController extends Controller
         return view('quizzes.start', compact('subject', 'quizzes'));
     }
 
-    // SUBMIT: hitung nilai
     public function submit(Request $request, $subjectId)
     {
         $quizzes = Quiz::where('subject_id', $subjectId)->get();
@@ -37,6 +37,24 @@ class QuizController extends Controller
             }
         }
 
-        return view('quizzes.result', compact('score'));
+        // Cegah submit ulang
+        if (Score::where('user_id', auth()->id())
+            ->where('subject_id', $subjectId)
+            ->exists()) {
+
+            return redirect()->route('quiz.index')
+                ->with('error', 'Kuis sudah pernah dikerjakan.');
+        }
+
+        Score::create([
+            'user_id' => auth()->id(),
+            'subject_id' => $subjectId,
+            'score' => $score,
+        ]);
+
+          // ✅ Redirect ke quiz.index jika berhasil
+        return redirect()->route('quiz.index')
+            ->with('success', 'Kuis berhasil disubmit. Nilai kamu: ' . $score);
     }
+
 }

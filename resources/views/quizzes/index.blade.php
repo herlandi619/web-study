@@ -5,8 +5,40 @@
         </h2>
     </x-slot>
 
+
     <div class="py-10 bg-gray-100 min-h-screen">
         <div class="max-w-5xl mx-auto px-4">
+
+            
+    {{-- ALERT ERROR --}}
+    @if (session('error'))
+        <div class="mb-4 text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <strong class="font-bold">Gagal!</strong>
+            <span class="block sm:inline">
+                {{ session('error') }}
+            </span>
+
+            <button onclick="this.parentElement.remove()"
+                    class="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-700">
+                ✕
+            </button>
+        </div>
+    @endif
+
+    {{-- ALERT SUCCESS --}}
+    @if (session('success'))
+        <div class="mb-4 text-center bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <strong class="font-bold">Berhasil!</strong>
+            <span class="block sm:inline">
+                {{ session('success') }}
+            </span>
+
+            <button onclick="this.parentElement.remove()"
+                    class="absolute top-0 bottom-0 right-0 px-4 py-3 text-green-700">
+                ✕
+            </button>
+        </div>
+    @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

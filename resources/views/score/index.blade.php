@@ -50,7 +50,7 @@
 
                     <tr class="border-t text-center">
                         <td class="p-3">{{ $index + 1 }}</td>
-                        <td class="p-3">{{ $item->subject_name ?? 'Mata Pelajaran' }}</td>
+                        <td class="p-3">{{ $item->subject->nama_mapel }}</td>
                         <td class="p-3 font-semibold">{{ $item->score }}</td>
                         <td class="p-3">
                             @if ($item->score >= 75)
@@ -63,7 +63,7 @@
                         <td class="p-3">
                             <button
                                 onclick="openModal(
-                                    '{{ $item->subject_name ?? 'Mata Pelajaran' }}',
+                                    '{{ $item->subject->nama_mapel }}',
                                     '{{ $item->score }}',
                                     '{{ $totalSoal }}',
                                     '{{ $benar }}',

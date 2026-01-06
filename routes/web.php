@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MaterialController;
 
 Route::get('/', function () {
@@ -13,6 +14,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboardGuru', function () {
+    return view('dashboardGuru');
+})->middleware(['auth', 'verified'])->name('dashboard.guru');
 
 Route::middleware('auth')->group(function () {
 
@@ -36,6 +41,10 @@ Route::middleware('auth')->group(function () {
 
     //score
     Route::get('/hasil-belajar', [ScoreController::class, 'index'])->name('score.index');
+
+    //GURU
+    Route::get('/guru/siswa', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/guru/siswa/{id}', [StudentController::class, 'show'])->name('student.show');
 
 
 

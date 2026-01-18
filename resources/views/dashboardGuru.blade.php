@@ -62,6 +62,42 @@
                 </a>
             </div>
 
+
+            <!-- Materi Pembelajaran Card -->
+            <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between mt-6">
+
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-green-100 text-green-600 text-2xl">
+                            📘
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">
+                                Materi Pembelajaran
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Manajemen materi
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="mb-6">
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Tambah, edit, dan hapus materi pembelajaran yang akan diakses oleh siswa.
+                    </p>
+                </div>
+
+                <!-- Footer / Action -->
+                <a href="{{ route('guru.materi.index') }}"
+                class="w-full inline-flex justify-center items-center gap-2 bg-green-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-green-700 transition">
+                    ➕ Kelola Materi
+                </a>
+            </div>
+
+
         </div>
     </div>
 </x-app-layout>

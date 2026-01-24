@@ -53,7 +53,7 @@
                         <td class="p-3">{{ $item->subject->nama_mapel }}</td>
                         <td class="p-3 font-semibold">{{ $item->score }}</td>
                         <td class="p-3">
-                            @if ($item->score >= 75)
+                            @if ($item->score >= 30)
                                 <span class="bg-green-600 text-white px-3 py-1 rounded text-sm">LULUS</span>
                             @else
                                 <span class="bg-red-600 text-white px-3 py-1 rounded text-sm">BELUM LULUS</span>

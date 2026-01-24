@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Material;
 use App\Models\Subject;
+use App\Models\Material;
+use App\Models\ClassName;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -88,6 +89,69 @@ class MaterialController extends Controller
             ->route('guru.materi.index')
             ->with('success', 'Materi berhasil diperbarui');
     }
+
+    public function subjectIndex(){
+        $subjects = Subject::with('className')->latest()->get();
+        return view('guru.subjects.index', compact('subjects'));
+    }
+
+    public function subjectDestroy($id){
+        $subject = Subject::findOrFail($id);
+
+        $subject->delete();
+
+        return redirect()->route('guru.subject.index')->with('success', 'Subject berhasil dihapus');
+    }
+
+    public function subjectCreate()
+    {
+        $classes = ClassName::all();
+        return view('guru.subjects.create', compact('classes'));
+    }
+
+
+    public function subjectStore(Request $request)
+    {
+        $request->validate([
+            'class_id'   => 'required',
+            'nama_mapel' => 'required|string|max:100'
+        ]);
+
+        Subject::create([
+            'class_id'   => $request->class_id,
+            'nama_mapel' => $request->nama_mapel
+        ]);
+
+        return redirect()
+            ->route('guru.subject.index')
+            ->with('success', 'Subject berhasil ditambahkan');
+    }
+
+    public function subjectEdit(Subject $subject)
+    {
+        $classes = ClassName::all();
+
+        return view('guru.subjects.edit', compact('subject', 'classes'));
+    }
+
+    public function subjectUpdate(Request $request, Subject $subject)
+    {
+        $request->validate([
+            'class_id'   => 'required|exists:class_names,id',
+            'nama_mapel' => 'required|string|max:100'
+        ]);
+
+        $subject->update([
+            'class_id'   => $request->class_id,
+            'nama_mapel' => $request->nama_mapel
+        ]);
+
+        return redirect()
+            ->route('guru.subject.index')
+            ->with('success', 'Subject berhasil diperbarui');
+    }
+
+
 
 
 

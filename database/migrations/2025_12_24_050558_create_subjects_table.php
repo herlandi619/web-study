@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('class_id')
-                  ->constrained('classes')
+                  ->constrained('class_names')
                   ->onDelete('cascade');
             $table->string('nama_mapel');
             $table->timestamps();

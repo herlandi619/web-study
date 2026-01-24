@@ -25,6 +25,10 @@
                        class="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm hover:bg-gray-300 transition">
                         ⬅ Kembali
                     </a>
+                    <a href="{{ route('guru.subject.index') }}"
+                       class="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm hover:bg-gray-300 transition">
+                        ➕ Tambah Subject   
+                    </a>
 
                     <a href="{{ route('guru.materi.create') }}"
                        class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-xl text-sm hover:bg-green-700 transition">

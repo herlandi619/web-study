@@ -71,6 +71,25 @@ Route::middleware('auth')->group(function () {
         ->name('guru.materi.destroy');
 
 
+    // SUBJECT INDEX
+    Route::get('/guru/subject/index', [MaterialController::class, 'subjectindex'])
+        ->name('guru.subject.index');
+
+    Route::get('/guru/subject/create', [MaterialController::class, 'subjectCreate'])
+        ->name('guru.subject.create');
+
+    Route::post('/guru/subject', [MaterialController::class, 'subjectStore'])
+        ->name('guru.subject.store');
+
+    Route::get('/guru/subject/{subject}/edit', [MaterialController::class, 'subjectEdit'])
+        ->name('guru.subject.edit');
+
+    Route::put('/guru/subject/{subject}', [MaterialController::class, 'subjectUpdate'])
+        ->name('guru.subject.update');
+
+
+    Route::delete('/guru/subject/{id}', [MaterialController::class, 'subjectDestroy'])
+        ->name('guru.subject.destroy');
 
 });
 

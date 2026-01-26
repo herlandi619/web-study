@@ -6,6 +6,7 @@ use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\QuizzesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -90,6 +91,27 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/guru/subject/{id}', [MaterialController::class, 'subjectDestroy'])
         ->name('guru.subject.destroy');
+
+
+    // MANAJEMEN QUIZEE
+    Route::get('/guru/quiz/index', [QuizzesController::class, 'quizIndex'])
+        ->name('guru.quiz.index');
+
+    Route::delete('/guru/quiz/{quiz}', [QuizzesController::class, 'quizDestroy'])
+        ->name('guru.quiz.destroy');
+
+    Route::get('/guru/quiz/create', [QuizzesController::class, 'quizCreate'])
+    ->name('guru.quiz.create');
+
+    Route::post('/guru/quiz', [QuizzesController::class, 'quizStore'])
+    ->name('guru.quiz.store');
+
+    Route::get('/guru/quiz/{quiz}/edit', [QuizzesController::class, 'quizEdit'])
+    ->name('guru.quiz.edit');
+
+    Route::put('/guru/quiz/{quiz}', [QuizzesController::class, 'quizUpdate'])
+        ->name('guru.quiz.update');
+
 
 });
 

@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use App\Models\Subject;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-
-class Quiz extends Model
+class Quizzes extends Model
 {
-    /** @use HasFactory<\Database\Factories\QuizFactory> */
     use HasFactory;
 
     protected $guarded = [];
@@ -18,4 +16,11 @@ class Quiz extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function quizeIndex()
+    {
+        $quizzes = Quiz::with('subject')->latest()->get();
+        return view('guru.quiz.index', compact('quizzes'));
+    }
+
 }

@@ -57,4 +57,8 @@ class QuizController extends Controller
             ->with('success', 'Kuis berhasil disubmit. Nilai kamu: ' . $score);
     }
 
+
+    // MANAJEMEN QUIZE
+    
+
 }

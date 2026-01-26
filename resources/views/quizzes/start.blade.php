@@ -27,9 +27,20 @@
             </div>
         @endforeach
 
-        <button type="submit"
-                class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-            Selesai & Lihat Nilai
-        </button>
-    </form>
+        
+        <div class="mt-10">
+                <button type="submit"
+                        class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                    Selesai & Lihat Nilai
+                </button>
+
+                    <a href="{{ route('quiz.index') }}"
+                    class="inline-flex items-center bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700">
+                        ← Kembali ke index
+                    </a>
+                </div>
+
+        </form>
+
+    
 </x-app-layout>

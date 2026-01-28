@@ -28,6 +28,7 @@ class UserController extends Controller
 
     public function adminStore(Request $request)
     {
+      
         $request->validate([
             'name'     => 'required|string|max:100',
             'email'    => 'required|email|unique:users,email',

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\QuizzesController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,10 @@ Route::get('/dashboard', function () {
 Route::get('/dashboardGuru', function () {
     return view('dashboardGuru');
 })->middleware(['auth', 'verified'])->name('dashboard.guru');
+
+Route::get('/dashboardAdmin', function () {
+    return view('dashboardAdmin');
+})->middleware(['auth', 'verified'])->name('dashboard.admin');
 
 Route::middleware('auth')->group(function () {
 
@@ -111,6 +116,28 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/guru/quiz/{quiz}', [QuizzesController::class, 'quizUpdate'])
         ->name('guru.quiz.update');
+
+
+    // ADMIN 
+    // manajemen user
+    Route::get('/admin/users', [UserController::class, 'adminIndex'])
+        ->name('admin.users.index');
+
+    Route::get('/admin/users/create', [UserController::class, 'adminCreate'])
+    ->name('admin.users.create');
+
+    Route::post('/admin/users', [UserController::class, 'adminStore'])
+    ->name('admin.users.store');
+
+    Route::delete('/admin/users/{user}', [UserController::class, 'adminDestroy'])
+    ->name('admin.users.destroy');
+
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'adminEdit'])
+    ->name('admin.users.edit');
+
+    Route::put('/admin/users/{id}', [UserController::class, 'adminUpdate'])
+    ->name('admin.users.update');
+    
 
 
 });

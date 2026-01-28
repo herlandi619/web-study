@@ -11,7 +11,7 @@ class ClassName extends Model
     /** @use HasFactory<\Database\Factories\ClassNameFactory> */
     use HasFactory;
 
-     protected $table = 'class_names';
+    protected $table = 'class_names';
 
     protected $guarded = [];
 

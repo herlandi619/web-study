@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassNameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreController;
@@ -13,19 +14,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/dashboardGuru', function () {
-    return view('dashboardGuru');
-})->middleware(['auth', 'verified'])->name('dashboard.guru');
-
-Route::get('/dashboardAdmin', function () {
-    return view('dashboardAdmin');
-})->middleware(['auth', 'verified'])->name('dashboard.admin');
-
-Route::middleware('auth')->group(function () {
+// ROLE KHUSUS SISWA
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+   
+    Route::get('/dashboard', function () {
+            return view('dashboard');
+    })->name('dashboard');
 
     // Materi (siswa)
     Route::get('/materi', [MaterialController::class, 'index'])->name('materi.index');
@@ -48,6 +42,17 @@ Route::middleware('auth')->group(function () {
 
     //score (siswa)
     Route::get('/hasil-belajar', [ScoreController::class, 'index'])->name('score.index');
+
+});
+
+
+// ROLES KHUSUS GURU
+// GURU
+Route::middleware(['auth', 'role:guru'])->group(function () {
+
+   Route::get('/dashboardGuru', function () {
+        return view('dashboardGuru');
+    })->name('dashboard.guru');
 
     //GURU
     Route::get('/guru/siswa', [StudentController::class, 'index'])->name('student.index');
@@ -117,8 +122,18 @@ Route::middleware('auth')->group(function () {
     Route::put('/guru/quiz/{quiz}', [QuizzesController::class, 'quizUpdate'])
         ->name('guru.quiz.update');
 
+});
 
-    // ADMIN 
+
+
+// ADMIN
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::get('/dashboardAdmin', function () {
+        return view('dashboardAdmin');
+    })->name('dashboard.admin');
+
+     // ADMIN 
     // manajemen user
     Route::get('/admin/users', [UserController::class, 'adminIndex'])
         ->name('admin.users.index');
@@ -138,6 +153,25 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/users/{id}', [UserController::class, 'adminUpdate'])
     ->name('admin.users.update');
     
+    // ADMIN 
+    // Manajamen KELAS
+    Route::get('/admin/classes/index', [ClassNameController::class, 'classesIndex'])
+        ->name('admin.classes.index');
+
+    Route::get('/admin/classes/create', [ClassNameController::class, 'classesCreate'])
+        ->name('admin.classes.create');
+
+    Route::post('/admin/classes', [ClassNameController::class, 'classesStore'])
+        ->name('admin.classes.store');
+
+    Route::delete('/admin/classes/{class}', [ClassNameController::class, 'classesDestroy'])
+        ->name('admin.classes.destroy');
+
+    Route::get('/admin/classes/{class}/edit', [ClassNameController::class, 'classesEdit'])
+        ->name('admin.classes.edit');
+
+    Route::put('/admin/classes/{class}', [ClassNameController::class, 'classesUpdate'])
+        ->name('admin.classes.update');
 
 
 });
